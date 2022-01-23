@@ -1,7 +1,7 @@
-import { Button } from "antd";
 import "antd/dist/antd.css";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
+import { LinkButton } from "./components/LinkButton/LinkButton";
 
 import { MainRoutes } from "./routes";
 
@@ -10,8 +10,11 @@ function App() {
     <div>
       <Router>
         <div className="App">
-          <Button type="primary">Страница преподавателя</Button>
-          <Button type="primary">Страница студента</Button>
+          <LinkButton link="TeacherPage">Cтраница преподавателя</LinkButton>
+          <LinkButton link="StudentPage/dpolevodin">
+            Cтраница студента
+          </LinkButton>
+          <LinkButton link="">Домашняя страница</LinkButton>
         </div>
         <MainRoutes />
       </Router>

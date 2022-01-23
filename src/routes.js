@@ -10,7 +10,7 @@ export const MainRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/TeacherPage" element={<TeacherPage />} />
-      <Route path="/StudentPage" element={<StudentPage />} />
+      <Route path="/StudentPage/:slug" element={<StudentPage />} />
     </Routes>
   );
 };
