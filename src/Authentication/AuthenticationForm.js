@@ -3,14 +3,6 @@ import { GithubOutlined } from "@ant-design/icons";
 import "./AuthenticationForm.css";
 
 const AuthenticationForm = () => {
-  //   const onFinish = (values) => {
-  //     console.log('Success:', values);
-  //   };
-
-  //   const onFinishFailed = (errorInfo) => {
-  //     console.log('Failed:', errorInfo);
-  //   };
-
   return (
     <div className="form-wrapper">
       <Form
