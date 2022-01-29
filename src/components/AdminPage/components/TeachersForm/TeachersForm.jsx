@@ -5,7 +5,7 @@ import { useState } from "react";
 // import { values } from "core-js/core/array";
 
 export const TeachersForm = () => {
-  const [teachers, setTeachers] = useState(["test"]);
+  const [teachers, setTeachers] = useState([]);
 
   const deleteTeacher = (event) => {
     event.preventDefault();
