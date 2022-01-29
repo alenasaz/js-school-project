@@ -1,6 +1,16 @@
-._ button {
+._ {
+  display: flex;
+  flex-direction: column;
+}
+
+.form button {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 2rem;
+}
+
+.block {
+  display: flex;
+  width: 100%;
 }

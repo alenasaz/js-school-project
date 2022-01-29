@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage/LoginPage";
 import HomePage from "./components/HomePage/HomePage";
-import { AdminLogin } from "./components/AdminLogin/AdminLogin";
+import { AdminLogin } from "./components/AdminPage/components/AdminLogin/AdminLogin";
 import { AdminPage } from "./components/AdminPage/AdminPage";
 import { initialState, reducer } from "./store/reducer";
 import "./App.css";

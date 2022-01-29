@@ -1,6 +1,6 @@
 import { Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import { checkIsAdmin } from "../../utils";
+import { checkIsAdmin } from "../../../../utils";
 
 export const AdminLogin = () => {
   const navigate = useNavigate();
