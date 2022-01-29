@@ -3,12 +3,7 @@ import style from "./TeacherListItem.module.css";
 
 export const TeacherListItem = ({ teacher, onFinish }) => {
   return (
-    <Form
-      name="dynamic_form_nest_item"
-      onFinish={onFinish}
-      autoComplete="off"
-      className={style.form}
-    >
+    <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
       <Space style={{ display: "flex", marginBottom: 8 }} align="baseline">
         <Form.Item
           name="teacher-in-list"
@@ -17,7 +12,9 @@ export const TeacherListItem = ({ teacher, onFinish }) => {
           ]}
         >
           {/* <Input value={teacher} /> */}
-          <div name="teacherValue">{teacher}</div>
+          <div name="teacherValue" className={style.form}>
+            {teacher}
+          </div>
         </Form.Item>
         <Button type="secondary" htmlType="submit">
           -
