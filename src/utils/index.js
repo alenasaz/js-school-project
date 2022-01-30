@@ -4,5 +4,5 @@ export const checkIsAdmin = ({ username, password }) => {
   if (username === currentUsername && password === currentPassword) {
     return true;
   }
-  return alert("неверный логин/пароль");
+  return false;
 };
