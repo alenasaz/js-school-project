@@ -4,7 +4,8 @@
 
 ._ {
   display: flex;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
   background-color: var(--main-background-color);
   flex-direction: column;
   padding: 6rem;

@@ -1,0 +1,19 @@
+.name {
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  padding-left: 0.75rem;
+}
+
+.title {
+  display: flex;
+  padding-left: 0.75rem;
+  margin: 0 0 2rem 0;
+}
+
+._ input::placeholder {
+  transform: translateY(0.125rem);
+}

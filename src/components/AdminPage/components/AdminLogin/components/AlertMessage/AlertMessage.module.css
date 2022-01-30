@@ -1,0 +1,12 @@
+._ {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.alertWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 4rem;
+}

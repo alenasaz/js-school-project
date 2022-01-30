@@ -1,10 +1,14 @@
 import style from "./AdminPage.module.css";
-import { TeachersForm } from "./components/TeachersForm/TeachersForm";
+import { AdminPanelForm } from "./components/AdminPanelForm/AdminPanelForm";
 
 export const AdminPage = () => {
   return (
     <div className={style._}>
-      <TeachersForm />
+      <AdminPanelForm title="Преподаватели" placeholder="Ник на GitHub" />
+      <AdminPanelForm
+        title="Имена учебных репозиториев"
+        placeholder="Имя репозитория"
+      />
     </div>
   );
 };

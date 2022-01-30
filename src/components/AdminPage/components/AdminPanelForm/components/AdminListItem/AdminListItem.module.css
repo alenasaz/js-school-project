@@ -1,16 +1,12 @@
-._ {
-  display: flex;
-  flex-direction: column;
-}
-
-.form button {
+._ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
+  width: 2.5rem;
 }
 
 .block {
   display: flex;
   width: 100%;
+  padding-left: 0.75rem;
 }
