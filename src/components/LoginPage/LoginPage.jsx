@@ -5,7 +5,7 @@ import { GithubOutlined } from "@ant-design/icons";
 import "./LoginPage.css";
 import { AuthContext } from '../../App.js'
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const { state, dispatch } = useContext(AuthContext);
   const [data, setData] = useState({ errorMessage: "", isLoading: false });
 
@@ -117,7 +117,7 @@ const LoginPage = () => {
             </Button>
             <a
             className="login-link"
-            href={`https://github.com/login/oauth/authorize?scope=user&client_id=f97800e6afe29e050475&redirect_uri=http://localhost:3000/login`}
+            href={`https://github.com/login/oauth/authorize?scope=user&client_id=f97800e6afe29e050475&redirect_uri=http://localhost:3000`}
             onClick={() => {
               setData({ ...data, errorMessage: "" });
             }}
