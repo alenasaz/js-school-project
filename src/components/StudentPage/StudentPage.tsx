@@ -1,3 +1,5 @@
+import { useState } from "react";
+import * as React from "react";
 import {
     Drawer,
     Form,
@@ -11,13 +13,12 @@ import {
     Layout,
   } from "antd";
   import {
-    GithubOutlined,
     MinusCircleOutlined,
     PlusOutlined,
     SettingOutlined,
   } from "@ant-design/icons";
-  import { useState } from "react";
-  
+
+
   const { Option } = Select;
   const { Content } = Layout;
   const CheckboxGroup = Checkbox.Group;
@@ -37,7 +38,7 @@ import {
       setIndeterminate(!!list.length && list.length < plainOptions.length);
     };
   
-    const onFinish = (values: any) => {
+    const onFinish = (values: Array<string>) => {
       console.log("Received values of form:", values);
     };
   
