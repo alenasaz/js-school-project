@@ -1,11 +1,11 @@
 import { Form, Input, Button, Space, Typography } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { AdminPanelFormProps } from '../../../interfaces'
+import { AdminPanelFormProps, LoginCheck } from '../../../interfaces'
 
 const { Title } = Typography;
 
 export const AdminPageForm = (prop: AdminPanelFormProps) => {
-  const onFinish = (values: {username: string, password: string}) => {
+  const onFinish = (values: Array<{value: string}>) => {
     console.log('Received values of form:', values);
   };
 
@@ -19,7 +19,7 @@ export const AdminPageForm = (prop: AdminPanelFormProps) => {
               <Space key={key} style={{ display: 'flex', marginBottom: 8 }} align="baseline">
                 <Form.Item
                   {...restField}
-                  name={[name, 'first']}
+                  name={[name, 'value']}
                   rules={[{ required: true, message: 'Ввeдите значение' }]}
                 >
                   <Input placeholder={prop.placeholder} />
