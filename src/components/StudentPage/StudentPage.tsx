@@ -28,7 +28,7 @@ import {
   const StudentPage = () => {
     // TODO: Надо будет брать из эффектора. Для сохранения имени пользователя и запроса к списку репозиториев GitHub,
     //  надо будет брать из запроса авторизации
-    const [user, setUser] = useState('alenasaz');
+    const [user, setUser] = useState('dpolevodin');
 
     const [indeterminate, setIndeterminate] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
