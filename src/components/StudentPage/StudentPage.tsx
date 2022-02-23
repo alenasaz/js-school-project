@@ -17,15 +17,19 @@ import {
     PlusOutlined,
     SettingOutlined,
   } from "@ant-design/icons";
+  import { RepositoriesList } from './components/RepositoriesList'
 
 
   const { Option } = Select;
   const { Content } = Layout;
   const CheckboxGroup = Checkbox.Group;
   const plainOptions = ["Преподаватель", "Преподаватель1", "Преподаватель2"];
-  const user_name = "user";
   
   const StudentPage = () => {
+    // TODO: Надо будет брать из эффектора. Для сохранения имени пользователя и запроса к списку репозиториев GitHub,
+    //  надо будет брать из запроса авторизации
+    const [user, setUser] = useState('dpolevodin');
+
     const [indeterminate, setIndeterminate] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
     const showDrawer = () => {
@@ -46,7 +50,7 @@ import {
       <>
       <Row gutter={16}>
       <Col span={12} style={{textAlign:"start"}}>
-            <p>Здравствуйте, {user_name}</p>
+            <p>Здравствуйте, {user}</p>
           </Col>
           <Col span={5}>
             <Button type="link" icon={<SettingOutlined />} onClick={showDrawer}>
@@ -65,7 +69,7 @@ import {
                 background: "#d9d9d9",
               }}
             >
-              На текущий момент данных нет
+              {<RepositoriesList user={user}/> || "На текущий момент данных нет"}
             </Content>
           </Col>
         </Row>
