@@ -1,6 +1,7 @@
 import { Form, Input, Button, Space, Typography } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
 import { AdminPanelFormProps } from '../../../interfaces'
+import { StoreValue } from 'rc-field-form/lib/interface'
 
 const { Title } = Typography
 
@@ -9,6 +10,15 @@ export const AdminPageForm = ({ title, placeholder }: AdminPanelFormProps) => {
     //TODO полученные значения надо передавать в БД, console.log удалить
     console.log('Received values of form:', values)
   }
+
+  const handleClickAddElement =
+    (method: (defaultValue?: StoreValue, insertIndex?: number) => void) => () =>
+      method()
+
+  const handleClickRemoveElement =
+    (method: (index: number | number[]) => void, value: number | number[]) =>
+    () =>
+      method(value)
 
   return (
     <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
@@ -29,13 +39,15 @@ export const AdminPageForm = ({ title, placeholder }: AdminPanelFormProps) => {
                 >
                   <Input placeholder={placeholder} />
                 </Form.Item>
-                <MinusCircleOutlined onClick={() => remove(name)} />
+                <MinusCircleOutlined
+                  onClick={handleClickRemoveElement(remove, name)}
+                />
               </Space>
             ))}
             <Form.Item>
               <Button
                 type="dashed"
-                onClick={() => add()}
+                onClick={handleClickAddElement(add)}
                 block
                 icon={<PlusOutlined />}
               >
