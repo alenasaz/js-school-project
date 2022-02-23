@@ -1,19 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { checkIsAdmin} from "../../utils/checkIsAdmin"
-import { Form, Input, Button, Alert, Space } from 'antd';
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { checkIsAdmin } from '../../utils/checkIsAdmin'
+import { Form, Input, Button, Alert, Space } from 'antd'
 import { LoginCheck } from '../../interfaces'
 
 export const AdminLoginPage = () => {
+  //TODO перенести в эффектор
   const [isError, setIsError] = useState(false)
-  const navigate = useNavigate()
-  const onFinish = (values: LoginCheck) => {
-    checkIsAdmin({...values}) ? navigate('/admin') : setIsError(true)
-  };
 
-  const onFinishFailed = () => {
+  const navigate = useNavigate()
+  const handleFinish = (values: LoginCheck) => {
+    checkIsAdmin({ ...values }) ? navigate('/admin') : setIsError(true)
+  }
+
+  const handleFinishFailed = () => {
     setIsError(true)
-  };
+  }
 
   return (
     <Space direction="vertical" size={32}>
@@ -27,11 +29,10 @@ export const AdminLoginPage = () => {
         wrapperCol={{
           span: 16,
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        onFinish={handleFinish}
+        onFinishFailed={handleFinishFailed}
         autoComplete="off"
       >
-
         <Form.Item
           label="Username"
           name="username"
@@ -70,5 +71,5 @@ export const AdminLoginPage = () => {
         </Form.Item>
       </Form>
     </Space>
-  );
-};
+  )
+}
