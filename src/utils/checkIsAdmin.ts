@@ -1,7 +1,9 @@
-export const checkIsAdmin = ( username: string | number, password: string | number) => {
-  const currentUsername = "admin";
-  const currentPassword = "admin";
+import { LoginCheck } from '../interfaces'
+
+export const checkIsAdmin = ({ username, password }: LoginCheck) => {
+  const currentUsername = 'admin'
+  const currentPassword = 'admin'
   if (username === currentUsername && password === currentPassword) {
-    return true;
+    return true
   }
-};
+}
