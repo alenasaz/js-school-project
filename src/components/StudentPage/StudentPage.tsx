@@ -26,8 +26,8 @@ import {
   const plainOptions = ["Преподаватель", "Преподаватель1", "Преподаватель2"];
   
   const StudentPage = () => {
-    //для сохранения имени пользователя и запроса к списку репозиториев GitHub, должно уйти в effector
-    //надо будет брать из запроса авторизации
+    // TODO: Надо будет брать из эффектора. Для сохранения имени пользователя и запроса к списку репозиториев GitHub,
+    //  надо будет брать из запроса авторизации
     const [user, setUser] = useState('alenasaz');
 
     const [indeterminate, setIndeterminate] = useState(true);

@@ -11,16 +11,16 @@ type Repository = {
 }
 
 const { Panel } = Collapse;
-const rooUsersUrl: string = 'https://api.github.com/users/'
+const rootUsersUrl: string = 'https://api.github.com/users/'
 
 export const RepositoriesList = (prop: { user: string }) => {
+  //TODO: Перенести в эффектор. Сделать связку со store User,
+  // Запрос возвращается список указанного количества репозиториев (repositoriesPerPage)
+  // по нику gitHub в порядке убывания по дате создания
   const [allRepoShown, setAllRepoShown, ] = useState(false);
   const [repositories, setRepositories] = useState([]);
   const [repositoriesPerPage, setRepositoriesPerPage] = useState(10);
-
-  //запрос возвращается список указанного количества репозиториев (repositoriesPerPage)
-  // по нику gitHub в порядке убывания по дате создания
-  const repositoriesUrl = `${rooUsersUrl}${prop.user}/repos?per_page=${repositoriesPerPage}&sort=order`;
+  const repositoriesUrl = `${rootUsersUrl}${prop.user}/repos?per_page=${repositoriesPerPage}&sort=order`;
 
   useEffect(() => {
     fetch(repositoriesUrl)
