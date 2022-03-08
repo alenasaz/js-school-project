@@ -23,7 +23,8 @@ import {
   const { Option } = Select;
   const { Content } = Layout;
   const CheckboxGroup = Checkbox.Group;
-  const plainOptions = ["Преподаватель", "Преподаватель1", "Преподаватель2"];
+  const initialPlainOptions = ["Преподаватель", "Преподаватель1", "Преподаватель2"];
+  const initialGitRepoOptions = ['html-css','admin-panel-makeup', 'admin-panel-app'];
   
   const StudentPage = () => {
     // TODO: Надо будет брать из эффектора. Для сохранения имени пользователя и запроса к списку репозиториев GitHub,
@@ -32,19 +33,32 @@ import {
 
     const [indeterminate, setIndeterminate] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
-    const showDrawer = () => {
+    const handleClick = () => {
       setIsVisible(true);
     };
-    const onClose = () => {
+    const handleClose = () => {
       setIsVisible(false);
     };
-    const onChange = (list: any) => {
-      setIndeterminate(!!list.length && list.length < plainOptions.length);
+    // const handleRemove = (name:number) => {
+    //    remove(name);
+    // };
+    const handleChange = (list: any) => {
+      console.log('list type',typeof list, list);
+      setIndeterminate(!!list.length && list.length < initialPlainOptions.length);
     };
   
-    const onFinish = (values: Array<string>) => {
+    const handleFinish = (values: Array<string>) => {
       console.log("Received values of form:", values);
     };
+
+    const handleClickAddElement =
+    (method: (defaultValue?: string, insertIndex?: number) => void) => () =>
+      method()
+
+  const handleClickRemoveElement =
+    (method: (index: number | number[]) => void, value: number | number[]) =>
+    () =>
+      method(value)
   
     return (
       <>
@@ -53,7 +67,7 @@ import {
             <p>Здравствуйте, {user}</p>
           </Col>
           <Col span={5}>
-            <Button type="link" icon={<SettingOutlined />} onClick={showDrawer}>
+            <Button type="link" icon={<SettingOutlined />} onClick={handleClick}>
               Настройки
             </Button>
           </Col>
@@ -75,14 +89,14 @@ import {
         </Row>
         <Drawer
           width={600}
-          onClose={onClose}
+          onClose={handleClose}
           visible={isVisible}
           bodyStyle={{ paddingBottom: 80 }}
           extra={<Space></Space>}
         >
           <Row gutter={16}>
             <Col span={10}>
-              <CheckboxGroup options={plainOptions} onChange={onChange} />
+              <CheckboxGroup options={initialPlainOptions} onChange={handleChange} />
             </Col>
           </Row>
           <br />
@@ -90,7 +104,7 @@ import {
           <p>Мои репозитории</p>
           <Form
             name="dynamic_form_nest_item"
-            onFinish={onFinish}
+            onFinish={handleFinish}
             autoComplete="off"
             layout="vertical"
             hideRequiredMark
@@ -107,9 +121,10 @@ import {
                             rules={[{ required: true, message: "Выберите" }]}
                           >
                             <Select placeholder="Выберите">
-                              <Option value="public">html-css</Option>
-                              <Option value="public">admin-panel-makeup</Option>
-                              <Option value="public">admin-panel-app</Option>
+                            {initialGitRepoOptions.map((gitRepo) => 
+                            <Option value="public">{gitRepo}</Option>
+                            ) }
+                              
                             </Select>
                           </Form.Item>
                         </Col>
@@ -127,7 +142,7 @@ import {
                           style={{
                             paddingTop: 7,
                           }}
-                          onClick={() => remove(name)}
+                          onClick={handleClickRemoveElement(remove, name)}
                         />
                       </Row>
                     </>
@@ -135,7 +150,7 @@ import {
                   <Form.Item>
                     <Button
                       type="dashed"
-                      onClick={() => add()}
+                      onClick={handleClickAddElement(add)}
                       block
                       icon={<PlusOutlined />}
                     >
