@@ -48,11 +48,11 @@ const StudentPage = () => {
   };
 
   type CheckboxValueType = string | number | boolean;
-  const handleChange = (list: Array<CheckboxValueType>) => {
+  const handleChange = (list: CheckboxValueType[]) => {
     setIndeterminate( list.length <= initialPlainOptions.length);
   };
 
-  const handleFinish = (values: Array<string>) => {
+  const handleFinish = (values: string[]) => {
     console.log("Received values of form:", values);
   };
 
