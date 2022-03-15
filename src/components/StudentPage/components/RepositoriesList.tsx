@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Collapse,Button,Space } from 'antd';
-
-type Repository = {
-  id: string;
-  name?: string;
-  full_name?: string;
-  html_url?: string;
-  description?: string;
-  created_at: string;
-}
+import { Repository } from './types';
+import { rootUsersUrl } from './constants';
 
 const { Panel } = Collapse;
-const rootUsersUrl: string = 'https://api.github.com/users/'
 
 export const RepositoriesList = (prop: { user: string }) => {
   //TODO: Перенести в эффектор. Сделать связку со store User,
