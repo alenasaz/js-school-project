@@ -1,25 +1,40 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { checkIsAdmin } from '../../utils/checkIsAdmin'
+import { useStore } from 'effector-react'
+import { checkIsAdmin } from 'src/utils/checkIsAdmin'
 import { Form, Input, Button, Alert, Space } from 'antd'
-import { LoginCheck } from '../../interfaces'
+import { LoginCheck } from 'src/interfaces'
+import {
+  CurrentRoleTypesEnum,
+  setCurrentRoleEvent,
+} from '../../store/currentRole'
+import {
+  $displayErrorWarning,
+  setErrorWarningEvent,
+} from '../../store/errorWidget'
+import { adminLoginMessageTypesEnum } from './constants'
+import { NavigationPageTypesEnum } from '../../constants'
 
 export const AdminLoginPage = () => {
-  //TODO перенести в эффектор
-  const [isError, setIsError] = useState(false)
-
   const navigate = useNavigate()
+  const errorWarningMessage = useStore($displayErrorWarning)
+
   const handleFinish = (values: LoginCheck) => {
-    checkIsAdmin({ ...values }) ? navigate('/admin') : setIsError(true)
+    if (checkIsAdmin({ ...values })) {
+      setCurrentRoleEvent(CurrentRoleTypesEnum.admin)
+      navigate(NavigationPageTypesEnum.adminPage)
+    }
+    setErrorWarningEvent()
   }
 
   const handleFinishFailed = () => {
-    setIsError(true)
+    setErrorWarningEvent()
   }
 
   return (
     <Space direction="vertical" size={32}>
-      {isError && <Alert message="Неверный логин или пароль!" type="error" />}
+      {errorWarningMessage && (
+        <Alert message={adminLoginMessageTypesEnum.incorrect} type="error" />
+      )}
 
       <Form
         name="basic"
@@ -39,7 +54,7 @@ export const AdminLoginPage = () => {
           rules={[
             {
               required: true,
-              message: 'Введите логин!',
+              message: `${adminLoginMessageTypesEnum.loginIsEmpty}`,
             },
           ]}
         >
@@ -52,7 +67,7 @@ export const AdminLoginPage = () => {
           rules={[
             {
               required: true,
-              message: 'Введите пароль!',
+              message: `${adminLoginMessageTypesEnum.passwordIsEmpty}`,
             },
           ]}
         >
