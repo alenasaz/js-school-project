@@ -1,4 +1,4 @@
-export type Repository = {
+export interface StudentRepository {
     id: string;
     name?: string;
     full_name?: string;

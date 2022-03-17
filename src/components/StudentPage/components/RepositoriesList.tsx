@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Collapse,Button,Space } from 'antd';
-import { Repository } from './types';
-import { rootUsersUrl } from './constants';
+import { StudentRepository } from './interfaces';
+import { Urls } from './constants';
 
 const { Panel } = Collapse;
 
@@ -12,7 +12,7 @@ export const RepositoriesList = (prop: { user: string }) => {
   const [allRepoShown, setAllRepoShown, ] = useState(false);
   const [repositories, setRepositories] = useState([]);
   const [repositoriesPerPage, setRepositoriesPerPage] = useState(10);
-  const repositoriesUrl = `${rootUsersUrl}${prop.user}/repos?per_page=${repositoriesPerPage}&sort=order`;
+  const repositoriesUrl = `${Urls.rootUsersUrl}${prop.user}/repos?per_page=${repositoriesPerPage}&sort=order`;
 
   useEffect(() => {
     fetch(repositoriesUrl)
@@ -31,7 +31,7 @@ export const RepositoriesList = (prop: { user: string }) => {
     )
   }
 
-  const panelList = repositories.map((item: Repository) => {
+  const panelList = repositories.map((item: StudentRepository) => {
     return (
         <Panel header={item?.name} key={`${item.id}`}>
           <p>URL репозитория:</p>

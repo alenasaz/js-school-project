@@ -1,1 +1,3 @@
-export const rootUsersUrl: string = 'https://api.github.com/users/';
+export enum Urls {
+    rootUsersUrl = 'https://api.github.com/users/',
+  }
