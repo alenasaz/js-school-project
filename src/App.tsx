@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { AdminLoginPage } from 'src/components/AdminLoginPage'
 import { AdminPage } from 'src/components/AdminPage'
 import { NavigationPageTypesEnum } from './constants'
+import StudentPage from './components/StudentPage/StudentPage'
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
         />
         <Route
           path={NavigationPageTypesEnum.studentPage}
-          element={<div>student</div>}
+          element={<StudentPage />}
         />
         <Route
           path={NavigationPageTypesEnum.adminPage}
