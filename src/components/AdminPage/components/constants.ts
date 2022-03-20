@@ -1,3 +1,3 @@
-export enum adminFormMessageTypesEnum {
+export enum AdminFormMessageTypesEnum {
   emptyValue = 'Ввeдите значение',
 }

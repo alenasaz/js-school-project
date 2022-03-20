@@ -5,7 +5,7 @@ import { AdminPanelFormProps } from 'src/interfaces'
 import { StoreValue } from 'rc-field-form/lib/interface'
 import { HandleFinishProps } from './interfaces'
 import { ButtonTextTypesEnum } from 'src/constants'
-import { adminFormMessageTypesEnum } from './constants'
+import { AdminFormMessageTypesEnum } from './constants'
 
 const { Title } = Typography
 
@@ -49,7 +49,7 @@ export const AdminPageForm: FC<AdminPanelFormProps> = ({
                   rules={[
                     {
                       required: true,
-                      message: adminFormMessageTypesEnum.emptyValue,
+                      message: AdminFormMessageTypesEnum.emptyValue,
                     },
                   ]}
                 >
