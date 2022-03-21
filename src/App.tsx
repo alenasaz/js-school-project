@@ -8,8 +8,8 @@ import { GetUserRoleByName } from './gql/index'
 
 const App = () => {
   //TODO: удалить, тестовые данные для Hasura
-  const test = GetUserRoleByName('admin')
-  console.log(test)
+  const hasuraTestQuery = GetUserRoleByName('admin')
+  console.log(hasuraTestQuery)
 
   return (
     <div className="App">
