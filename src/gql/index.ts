@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
-export * from './queries/getUserRoleByName'
+export * from './queries/getUserNameById'
 
 const URI = 'https://square-basilisk-55.hasura.app/v1/graphql'
 const ADMIN_SECRET =

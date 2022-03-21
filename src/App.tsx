@@ -4,11 +4,11 @@ import { Routes, Route } from 'react-router-dom'
 import { AdminLoginPage } from './components/AdminLoginPage/AdminLoginPage'
 import { AdminPage } from './components/AdminPage/AdminPage'
 import StudentPage from './components/StudentPage/StudentPage'
-import { GetUserRoleByName } from './gql/index'
+import { GetUserNameById } from './gql/index'
 
 const App = () => {
   //TODO: удалить, тестовые данные для Hasura
-  const hasuraTestQuery = GetUserRoleByName('admin')
+  const hasuraTestQuery = GetUserNameById(77278863)
   console.log(hasuraTestQuery)
 
   return (
