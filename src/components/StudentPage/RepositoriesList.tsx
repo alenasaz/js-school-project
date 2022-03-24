@@ -32,9 +32,9 @@ console.log('репо', repositories);
 
   return (
     <>
-      <Collapse defaultActiveKey={[]} >
+      
         <PanelList repositories={repositories}/>
-      </Collapse>
+    
       <Button type="default" onClick={handleClick}>
         {allRepoShown ? "Скрыть " : "Показать "}
         весь список репозиториев
