@@ -1,9 +1,13 @@
+import { FC } from 'react'
 import { Space } from 'antd'
-import { AdminPageForm } from './components/AdminPanelForm'
-import { ErrorPage } from '../ErrorPage/ErrorPage'
-import { AdminPageProps } from '../../interfaces'
+import { useStore } from 'effector-react'
+import { AdminPageForm } from './components/AdminPageForm'
+import { ErrorPage } from '../ErrorPage'
+import { $accessByRole } from 'src/store/currentRole'
+import { adminFormTypesEnum } from './constants'
 
-export const AdminPage = ({ isAdmin }: AdminPageProps) => {
+export const AdminPage: FC = () => {
+  const { isAdmin } = useStore($accessByRole)
   if (!isAdmin) {
     return <ErrorPage />
   }
@@ -11,10 +15,13 @@ export const AdminPage = ({ isAdmin }: AdminPageProps) => {
   return (
     <>
       <Space direction="vertical" size={80}>
-        <AdminPageForm title="Преподаватели" placeholder="Ник на Github" />
         <AdminPageForm
-          title="Имена репозиториев"
-          placeholder="Имя репозитория"
+          title={adminFormTypesEnum.teacherFormTitle}
+          placeholder={adminFormTypesEnum.teacherFormPlaceholder}
+        />
+        <AdminPageForm
+          title={adminFormTypesEnum.repositoryFormTitle}
+          placeholder={adminFormTypesEnum.repositoryFormPlaceholder}
         />
       </Space>
     </>
