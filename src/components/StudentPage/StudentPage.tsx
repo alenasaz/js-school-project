@@ -17,7 +17,7 @@ import {
   PlusOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { RepositoriesList } from "./components/RepositoriesList";
+import { RepositoriesList } from "./RepositoriesList";
 
 const { Option } = Select;
 const { Content } = Layout;
