@@ -7,7 +7,7 @@ const GET_USER_NAME_BY_ID = gql`
     }
   }
 `
-
+//TODO: перенести в эффектор
 export const GetUserNameById = (id: number) => {
   const { data, loading, error } = useQuery(GET_USER_NAME_BY_ID, {
     variables: { id: id },
