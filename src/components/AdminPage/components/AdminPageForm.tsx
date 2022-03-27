@@ -1,12 +1,19 @@
+import { FC } from 'react'
 import { Form, Input, Button, Space, Typography } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
-import { AdminPanelFormProps } from '../../../interfaces'
+import { AdminPanelFormProps } from 'src/interfaces'
 import { StoreValue } from 'rc-field-form/lib/interface'
+import { HandleFinishProps } from './interfaces'
+import { ButtonTextTypesEnum } from 'src/constants'
+import { AdminFormMessageTypesEnum } from './constants'
 
 const { Title } = Typography
 
-export const AdminPageForm = ({ title, placeholder }: AdminPanelFormProps) => {
-  const onFinish = (values: { value: string }[]) => {
+export const AdminPageForm: FC<AdminPanelFormProps> = ({
+  title,
+  placeholder,
+}) => {
+  const handleFinish = (values: HandleFinishProps) => {
     //TODO полученные значения надо передавать в БД, console.log удалить
     console.log('Received values of form:', values)
   }
@@ -21,7 +28,11 @@ export const AdminPageForm = ({ title, placeholder }: AdminPanelFormProps) => {
       method(value)
 
   return (
-    <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
+    <Form
+      name="dynamic_form_nest_item"
+      onFinish={handleFinish}
+      autoComplete="off"
+    >
       <Title level={2}>{title}</Title>
       <Form.List name="users">
         {(fields, { add, remove }) => (
@@ -35,7 +46,12 @@ export const AdminPageForm = ({ title, placeholder }: AdminPanelFormProps) => {
                 <Form.Item
                   {...restField}
                   name={[name, 'value']}
-                  rules={[{ required: true, message: 'Ввeдите значение' }]}
+                  rules={[
+                    {
+                      required: true,
+                      message: AdminFormMessageTypesEnum.emptyValue,
+                    },
+                  ]}
                 >
                   <Input placeholder={placeholder} />
                 </Form.Item>
@@ -59,7 +75,7 @@ export const AdminPageForm = ({ title, placeholder }: AdminPanelFormProps) => {
       </Form.List>
       <Form.Item>
         <Button type="primary" htmlType="submit">
-          Подтвердить
+          {ButtonTextTypesEnum.submit}
         </Button>
       </Form.Item>
     </Form>
