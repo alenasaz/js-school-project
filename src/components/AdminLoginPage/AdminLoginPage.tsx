@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import { checkIsAdmin } from 'src/utils/checkIsAdmin'
 import { Form, Input, Button, Alert, Space } from 'antd'
