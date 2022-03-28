@@ -36,7 +36,6 @@ const StudentPage = () => {
   //  надо будет брать из запроса авторизации
   const user = useStore($userName)
   const isVisible = useStore($displayDrawer)
-  const [form] = Form.useForm()
   //const [indeterminate, setIndeterminate] = useState(true)
   const handleClick = () => {
     setDrawerVisible()
@@ -62,9 +61,6 @@ const StudentPage = () => {
     (method: (index: number | number[]) => void, value: number | number[]) =>
     () =>
       method(value)
-  const handleChangeUrl = (value: string) => {
-    console.log(`selected ${value}`)
-  }
 
   return (
     <>
@@ -116,7 +112,6 @@ const StudentPage = () => {
           onFinish={handleFinish}
           autoComplete="off"
           layout="vertical"
-          //hideRequiredMark
         >
           <Form.List name="reposList">
             {(fields, { add, remove }) => (
@@ -125,20 +120,12 @@ const StudentPage = () => {
                   <>
                     <Row gutter={16}>
                       <Col span={11}>
-                        {/* <Space
-                      key={key}
-                      style={{ display: 'flex', marginBottom: 8 }}
-                      align="baseline"
-                    > */}
                         <Form.Item
                           key={key}
                           name={[name, 'repo']}
                           rules={[{ required: true, message: 'Выберите' }]}
                         >
-                          <Select
-                            placeholder="Выберите"
-                            onChange={handleChangeUrl}
-                          >
+                          <Select placeholder="Выберите">
                             {initialGitRepoOptions.map((gitRepo) => (
                               <Option value={gitRepo}>{gitRepo}</Option>
                             ))}
@@ -163,7 +150,6 @@ const StudentPage = () => {
                         }}
                         onClick={handleClickRemoveElement(remove, name)}
                       />
-                      {/* </Space> */}
                     </Row>
                   </>
                 ))}
