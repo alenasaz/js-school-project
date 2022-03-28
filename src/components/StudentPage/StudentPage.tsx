@@ -20,31 +20,23 @@ import {
 import { RepositoriesList } from './RepositoriesList'
 import {
   $displayDrawer,
+  $userName,
   setDrawerVisible,
   setDrawerUnvisible,
 } from '../../store/studentState'
 import { useStore } from 'effector-react'
+import { initialGitRepoOptions, initialPlainOptions } from './constants'
 
 const { Option } = Select
 const { Content } = Layout
 const CheckboxGroup = Checkbox.Group
-const initialPlainOptions = [
-  'Преподаватель',
-  'Преподаватель1',
-  'Преподаватель2',
-]
-const initialGitRepoOptions = [
-  'html-css',
-  'admin-panel-makeup',
-  'admin-panel-app',
-]
 
 const StudentPage = () => {
   // TODO: Надо будет брать из эффектора. Для сохранения имени пользователя и запроса к списку репозиториев GitHub,
   //  надо будет брать из запроса авторизации
-  const [user, setUser] = useState('dpolevodin')
+  const user = useStore($userName)
   const isVisible = useStore($displayDrawer)
-  const [indeterminate, setIndeterminate] = useState(true)
+  //const [indeterminate, setIndeterminate] = useState(true)
   const handleClick = () => {
     setDrawerVisible()
   }
@@ -54,7 +46,7 @@ const StudentPage = () => {
 
   type CheckboxValueType = string | number | boolean
   const handleChange = (list: CheckboxValueType[]) => {
-    setIndeterminate(list.length <= initialPlainOptions.length)
+    //setIndeterminate(list.length <= initialPlainOptions.length)
   }
 
   const handleFinish = (values: string[]) => {
