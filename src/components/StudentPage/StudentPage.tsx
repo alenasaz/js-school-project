@@ -36,6 +36,7 @@ const StudentPage = () => {
   //  надо будет брать из запроса авторизации
   const user = useStore($userName)
   const isVisible = useStore($displayDrawer)
+  const [form] = Form.useForm()
   //const [indeterminate, setIndeterminate] = useState(true)
   const handleClick = () => {
     setDrawerVisible()
@@ -61,6 +62,9 @@ const StudentPage = () => {
     (method: (index: number | number[]) => void, value: number | number[]) =>
     () =>
       method(value)
+  const handleChangeUrl = (value: string) => {
+    console.log(`selected ${value}`)
+  }
 
   return (
     <>
@@ -106,34 +110,45 @@ const StudentPage = () => {
         <br />
         <br />
         <p>Мои репозитории</p>
+
         <Form
           name="dynamic_form_nest_item"
           onFinish={handleFinish}
           autoComplete="off"
           layout="vertical"
-          hideRequiredMark
+          //hideRequiredMark
         >
-          <Form.List name="users">
+          <Form.List name="reposList">
             {(fields, { add, remove }) => (
               <>
                 {fields.map(({ key, name, ...restField }) => (
                   <>
                     <Row gutter={16}>
                       <Col span={11}>
+                        {/* <Space
+                      key={key}
+                      style={{ display: 'flex', marginBottom: 8 }}
+                      align="baseline"
+                    > */}
                         <Form.Item
-                          name="repo"
+                          key={key}
+                          name={[name, 'repo']}
                           rules={[{ required: true, message: 'Выберите' }]}
                         >
-                          <Select placeholder="Выберите">
+                          <Select
+                            placeholder="Выберите"
+                            onChange={handleChangeUrl}
+                          >
                             {initialGitRepoOptions.map((gitRepo) => (
-                              <Option value="public">{gitRepo}</Option>
+                              <Option value={gitRepo}>{gitRepo}</Option>
                             ))}
                           </Select>
                         </Form.Item>
                       </Col>
                       <Col span={11}>
                         <Form.Item
-                          name="url"
+                          {...restField}
+                          name={[name, 'url']}
                           rules={[
                             { required: true, message: 'Url репозитория' },
                           ]}
@@ -141,12 +156,14 @@ const StudentPage = () => {
                           <Input placeholder="Url репозитория" />
                         </Form.Item>
                       </Col>
+
                       <MinusCircleOutlined
                         style={{
                           paddingTop: 7,
                         }}
                         onClick={handleClickRemoveElement(remove, name)}
                       />
+                      {/* </Space> */}
                     </Row>
                   </>
                 ))}
@@ -163,6 +180,11 @@ const StudentPage = () => {
               </>
             )}
           </Form.List>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
         </Form>
       </Drawer>
     </>
