@@ -3,7 +3,7 @@ import { Space } from 'antd'
 import { useStore } from 'effector-react'
 import { AdminPageForm } from './components/AdminPageForm'
 import { ErrorPage } from '../ErrorPage'
-import { $accessByRole } from 'src/store/currentRole'
+import { $accessByRole, $currentUser, setUserNameEvent } from 'src/store'
 import { adminFormTypesEnum } from './constants'
 
 export const AdminPage: FC = () => {
@@ -12,8 +12,12 @@ export const AdminPage: FC = () => {
     return <ErrorPage />
   }
 
+  setUserNameEvent('admin')
+  const { name } = useStore($currentUser)
+
   return (
     <>
+      <div>Hello, {name}</div>
       <Space direction="vertical" size={80}>
         <AdminPageForm
           title={adminFormTypesEnum.teacherFormTitle}
