@@ -1,5 +1,4 @@
-import { $displayDrawer, $userName, setDrawerVisible, setDrawerUnvisible, setIndeterminate } from './index'
+import { $displayDrawer, $userName, setDrawerVisibleEvent, setDrawerUnvisibleEvent } from './index'
 
-$displayDrawer.on(setDrawerVisible, (_) => true)
-$displayDrawer.on(setDrawerUnvisible, (_) => false)
+$displayDrawer.on(setDrawerVisibleEvent, (_) => true).on(setDrawerUnvisibleEvent, (_) => false)
 

@@ -21,8 +21,8 @@ import { RepositoriesList } from './RepositoriesList'
 import {
   $displayDrawer,
   $userName,
-  setDrawerVisible,
-  setDrawerUnvisible,
+  setDrawerVisibleEvent,
+  setDrawerUnvisibleEvent,
 } from '../../store/studentState'
 import { useStore } from 'effector-react'
 import { initialGitRepoOptions, initialPlainOptions } from './constants'
@@ -38,10 +38,10 @@ const StudentPage = () => {
   const isVisible = useStore($displayDrawer)
   //const [indeterminate, setIndeterminate] = useState(true)
   const handleClick = () => {
-    setDrawerVisible()
+    setDrawerVisibleEvent()
   }
   const handleClose = () => {
-    setDrawerUnvisible()
+    setDrawerUnvisibleEvent()
   }
 
   type CheckboxValueType = string | number | boolean
@@ -168,7 +168,7 @@ const StudentPage = () => {
           </Form.List>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Submit
+              Отправить
             </Button>
           </Form.Item>
         </Form>
