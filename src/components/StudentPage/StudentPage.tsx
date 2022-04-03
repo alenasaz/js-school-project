@@ -1,5 +1,5 @@
-import { useState } from "react";
-import * as React from "react";
+import { useState } from 'react'
+import * as React from 'react'
 import {
   Drawer,
   Form,
@@ -11,64 +11,61 @@ import {
   Space,
   Checkbox,
   Layout,
-} from "antd";
+} from 'antd'
 import {
   MinusCircleOutlined,
   PlusOutlined,
   SettingOutlined,
-} from "@ant-design/icons";
-import { RepositoriesList } from "./RepositoriesList";
+} from '@ant-design/icons'
+import { RepositoriesList } from './RepositoriesList'
+import {
+  $displayDrawer,
+  $userName,
+  setDrawerVisibleEvent,
+  setDrawerUnvisibleEvent,
+} from '../../store/studentState'
+import { useStore } from 'effector-react'
+import { initialGitRepoOptions, initialPlainOptions } from './constants'
 
-const { Option } = Select;
-const { Content } = Layout;
-const CheckboxGroup = Checkbox.Group;
-const initialPlainOptions = [
-  "Преподаватель",
-  "Преподаватель1",
-  "Преподаватель2",
-];
-const initialGitRepoOptions = [
-  "html-css",
-  "admin-panel-makeup",
-  "admin-panel-app",
-];
+const { Option } = Select
+const { Content } = Layout
+const CheckboxGroup = Checkbox.Group
 
 const StudentPage = () => {
   // TODO: Надо будет брать из эффектора. Для сохранения имени пользователя и запроса к списку репозиториев GitHub,
   //  надо будет брать из запроса авторизации
-  const [user, setUser] = useState("dpolevodin");
-
-  const [indeterminate, setIndeterminate] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
+  const user = useStore($userName)
+  const isVisible = useStore($displayDrawer)
+  //const [indeterminate, setIndeterminate] = useState(true)
   const handleClick = () => {
-    setIsVisible(true);
-  };
+    setDrawerVisibleEvent()
+  }
   const handleClose = () => {
-    setIsVisible(false);
-  };
+    setDrawerUnvisibleEvent()
+  }
 
-  type CheckboxValueType = string | number | boolean;
+  type CheckboxValueType = string | number | boolean
   const handleChange = (list: CheckboxValueType[]) => {
-    setIndeterminate( list.length <= initialPlainOptions.length);
-  };
+    //setIndeterminate(list.length <= initialPlainOptions.length)
+  }
 
   const handleFinish = (values: string[]) => {
-    console.log("Received values of form:", values);
-  };
+    console.log('Received values of form:', values)
+  }
 
   const handleClickAddElement =
     (method: (defaultValue?: string, insertIndex?: number) => void) => () =>
-      method();
+      method()
 
   const handleClickRemoveElement =
     (method: (index: number | number[]) => void, value: number | number[]) =>
     () =>
-      method(value);
+      method(value)
 
   return (
     <>
       <Row gutter={16}>
-        <Col span={12} style={{ textAlign: "start" }}>
+        <Col span={12} style={{ textAlign: 'start' }}>
           <p>Здравствуйте, {user}</p>
         </Col>
         <Col span={5}>
@@ -84,10 +81,10 @@ const StudentPage = () => {
               margin: 0,
               minHeight: 400,
               width: 1000,
-              background: "#d9d9d9",
+              background: '#d9d9d9',
             }}
           >
-            {<RepositoriesList user={user} /> || "На текущий момент данных нет"}
+            {<RepositoriesList user={user} /> || 'На текущий момент данных нет'}
           </Content>
         </Col>
       </Row>
@@ -109,14 +106,14 @@ const StudentPage = () => {
         <br />
         <br />
         <p>Мои репозитории</p>
+
         <Form
           name="dynamic_form_nest_item"
           onFinish={handleFinish}
           autoComplete="off"
           layout="vertical"
-          hideRequiredMark
         >
-          <Form.List name="users">
+          <Form.List name="reposList">
             {(fields, { add, remove }) => (
               <>
                 {fields.map(({ key, name, ...restField }) => (
@@ -124,26 +121,29 @@ const StudentPage = () => {
                     <Row gutter={16}>
                       <Col span={11}>
                         <Form.Item
-                          name="repo"
-                          rules={[{ required: true, message: "Выберите" }]}
+                          key={key}
+                          name={[name, 'repo']}
+                          rules={[{ required: true, message: 'Выберите' }]}
                         >
                           <Select placeholder="Выберите">
                             {initialGitRepoOptions.map((gitRepo) => (
-                              <Option value="public">{gitRepo}</Option>
+                              <Option value={gitRepo}>{gitRepo}</Option>
                             ))}
                           </Select>
                         </Form.Item>
                       </Col>
                       <Col span={11}>
                         <Form.Item
-                          name="url"
+                          {...restField}
+                          name={[name, 'url']}
                           rules={[
-                            { required: true, message: "Url репозитория" },
+                            { required: true, message: 'Url репозитория' },
                           ]}
                         >
                           <Input placeholder="Url репозитория" />
                         </Form.Item>
                       </Col>
+
                       <MinusCircleOutlined
                         style={{
                           paddingTop: 7,
@@ -166,10 +166,15 @@ const StudentPage = () => {
               </>
             )}
           </Form.List>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Отправить
+            </Button>
+          </Form.Item>
         </Form>
       </Drawer>
     </>
-  );
-};
+  )
+}
 
-export default StudentPage;
+export default StudentPage
