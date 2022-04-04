@@ -13,23 +13,21 @@ import { adminFormTypesEnum } from './constants'
 
 export const AdminPage: FC = () => {
   const { isAdmin } = useStore($accessByRole)
-  const isUserLoading = useStore($currentUserIsLoading)
-  console.log(isUserLoading)
+  const isUserDataLoading = useStore($currentUserIsLoading)
 
   if (!isAdmin) {
     return <ErrorPage />
   }
 
   setUserNameEvent('admin')
-
   const { name } = useStore($currentUser)
 
   return (
     <>
-      {isUserLoading && <Spin size="large" />}
-      {!isUserLoading && (
+      {isUserDataLoading && <Spin size="large" />}
+      {!isUserDataLoading && (
         <>
-          <div>Hello, {name}</div>
+          <div>Привет, {name}!</div>
           <Space direction="vertical" size={80}>
             <AdminPageForm
               title={adminFormTypesEnum.teacherFormTitle}
