@@ -1,14 +1,18 @@
-import { forward, sample } from 'effector'
+import { sample } from 'effector'
 import {
   $currentUser,
+  $currentUserIsLoading,
   $currentUserName,
-  setCurrentUserEvent,
   setCurrentUserFx,
+  setUserIsLoadingEvent,
   setUserNameEvent,
 } from './index'
 
 $currentUserName.on(setUserNameEvent, (_, userName) => userName)
 $currentUser.on(setCurrentUserFx.doneData, (_, currentUser) => currentUser)
+$currentUserIsLoading
+  .on(setUserIsLoadingEvent, (_) => true)
+  .on($currentUser, (_) => false)
 
 sample({
   clock: setUserNameEvent,
