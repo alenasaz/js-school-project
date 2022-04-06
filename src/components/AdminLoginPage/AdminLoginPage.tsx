@@ -6,11 +6,9 @@ import { LoginCheck } from 'src/interfaces'
 import {
   CurrentRoleTypesEnum,
   setCurrentRoleEvent,
-} from '../../store/currentRole'
-import {
   $displayErrorWarning,
   setErrorWarningEvent,
-} from '../../store/errorWidget'
+} from 'src/store'
 import { adminLoginMessageTypesEnum } from './constants'
 import { NavigationPageTypesEnum } from '../../constants'
 

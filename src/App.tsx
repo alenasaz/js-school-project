@@ -5,10 +5,8 @@ import { AdminLoginPage } from 'src/components/AdminLoginPage'
 import { AdminPage } from 'src/components/AdminPage'
 import { NavigationPageTypesEnum } from './constants'
 import StudentPage from './components/StudentPage/StudentPage'
-import { GetUserNameById } from './gql/queries/getUserNameById'
 
 const App = () => {
-  console.log(GetUserNameById(77278863))
   return (
     <div className="App">
       <Routes>
