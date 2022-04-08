@@ -3,6 +3,8 @@ import { Collapse, Button, Space } from 'antd'
 import { Urls } from './constants'
 import { PanelList } from './PanelList'
 import { useStore } from 'effector-react'
+import axios from 'axios'
+import { get } from '../../api/index'
 import {
   $allRepo,
   $repoCount,
@@ -23,13 +25,8 @@ export const RepositoriesList = (prop: { user: string }) => {
   const repositoriesUrl = `${Urls.rootUsersUrl}${prop.user}/repos?per_page=${repositoriesPerPage}&sort=order`
 
   useEffect(() => {
-    fetch(repositoriesUrl)
-      .then((data) => data.json())
-      .then((result) => {
-        setRepoListEvent(result)
-      })
-      .catch((err) => console.log(err))
-  }, [repositoriesUrl])
+    get(repositoriesUrl).then((result) => setRepoListEvent(result))
+  }, [])
 
   const handleClick = () => {
     return isAllShown
