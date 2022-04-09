@@ -3,8 +3,7 @@ import { Collapse, Button, Space } from 'antd'
 import { Urls } from './constants'
 import { PanelList } from './PanelList'
 import { useStore } from 'effector-react'
-import axios from 'axios'
-import { get } from '../../api/index'
+import { get } from 'src/api/'
 import {
   $allRepo,
   $repoCount,
@@ -16,9 +15,6 @@ import {
 } from 'src/store/repositoriesList'
 
 export const RepositoriesList = (prop: { user: string }) => {
-  //TODO: Перенести в эффектор. Сделать связку со store User,
-  // Запрос возвращается список указанного количества репозиториев (repositoriesPerPage)
-  // по нику gitHub в порядке убывания по дате создания
   const isAllShown = useStore($allRepo)
   const repositoriesPerPage = useStore($repoCount)
   const repositories = useStore($repoList)
@@ -26,7 +22,7 @@ export const RepositoriesList = (prop: { user: string }) => {
 
   useEffect(() => {
     get(repositoriesUrl).then((result) => setRepoListEvent(result))
-  }, [])
+  }, [repositoriesUrl])
 
   const handleClick = () => {
     return isAllShown
