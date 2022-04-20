@@ -5,6 +5,7 @@ import { AdminLoginPage } from 'src/components/AdminLoginPage'
 import { AdminPage } from 'src/components/AdminPage'
 import { NavigationPageTypesEnum } from './constants'
 import StudentPage from './components/StudentPage/StudentPage'
+import StudentLoginPage from './components/StudentLoginPage/StudentLoginPage'
 
 const App = () => {
   return (
@@ -16,7 +17,11 @@ const App = () => {
         />
         <Route
           path={NavigationPageTypesEnum.loginPage}
-          element={<div>login</div>}
+          element={
+            <div>
+              <StudentLoginPage />
+            </div>
+          }
         />
         <Route
           path={NavigationPageTypesEnum.adminLoginPage}
