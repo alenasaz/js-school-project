@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 export * from './queries'
+export * from './mutations'
 
 const URI = 'https://square-basilisk-55.hasura.app/v1/graphql'
 const ADMIN_SECRET =
