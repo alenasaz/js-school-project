@@ -1,17 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Input, Button, Checkbox, PageHeader } from 'antd'
+import { Form } from 'antd'
 import { GithubOutlined } from '@ant-design/icons'
 import LoginGithub from 'react-login-github'
 import { NavigationPageTypesEnum } from '../../constants'
+import {
+  setStudentCodeFailure,
+  setStudentCodeSuccess,
+} from 'src/store/studentLoginState'
 
 const StudentLoginPage = () => {
   const navigate = useNavigate()
   const onSuccess = (response: string) => {
-    console.log(response)
+    setStudentCodeSuccess(response)
     navigate(NavigationPageTypesEnum.studentPage)
   }
-  const onFailure = (response: string) => console.error(response)
+  const onFailure = (response: string) => setStudentCodeFailure(response)
 
   return (
     <div>
