@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import { Form, Input, Button, Space, Typography } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
-import { AdminPanelFormProps } from 'src/interfaces'
+import { AdminPanelFormProps } from '../../../interfaces'
 import { StoreValue } from 'rc-field-form/lib/interface'
 import { HandleFinishProps } from './interfaces'
-import { ButtonTextTypesEnum } from 'src/constants'
+import { ButtonTextTypesEnum } from '../../../constants'
 import { AdminFormMessageTypesEnum } from './constants'
 
 const { Title } = Typography

@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Form, Input, Button, Checkbox, PageHeader } from 'antd'
 import { GithubOutlined } from '@ant-design/icons'
-//import GitHubLogin from 'react-github-login'
+import LoginGithub from 'react-login-github'
+import { NavigationPageTypesEnum } from '../../constants'
 
 const StudentLoginPage = () => {
-  const onSuccess = (response: string) => console.log(response)
+  const navigate = useNavigate()
+  const onSuccess = (response: string) => {
+    console.log(response)
+    navigate(NavigationPageTypesEnum.studentPage)
+  }
   const onFailure = (response: string) => console.error(response)
 
   return (
@@ -23,24 +28,15 @@ const StudentLoginPage = () => {
         }}
         autoComplete="off"
       >
-        <Form.Item
-        // wrapperCol={{
-        //   offset: 8,
-        //   span: 16,
-        // }}
-        >
-          <a
-            className="login-link"
-            href={`https://github.com/login/oauth/authorize?scope=user&client_id=f97800e6afe29e050475&redirect_uri=http://localhost:3000/login`}
-          >
-            <Button icon={<GithubOutlined />}>Войти с помощью GitHub</Button>
-          </a>
-        </Form.Item>
-        {/* <GitHubLogin
+        <LoginGithub
           clientId="f97800e6afe29e050475"
           onSuccess={onSuccess}
           onFailure={onFailure}
-        /> */}
+          redirectUri="http://localhost:3000/student"
+          buttonText=" Войти с помощью GitHub"
+          className="ant-btn"
+          icon={<GithubOutlined />}
+        />
       </Form>
     </div>
   )
