@@ -1,7 +1,7 @@
 import { Result, Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { ErrorPageSubTitleTypesEnum } from './constants'
-import { NavigationPageTypesEnum } from 'src/constants'
+import { NavigationPageTypesEnum } from '../../constants'
 import { ErrorPageStatusTypesEnum } from './constants'
 
 export const ErrorPage = () => {

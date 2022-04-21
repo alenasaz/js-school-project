@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useStore } from 'effector-react'
-import { checkIsAdmin } from 'src/utils/checkIsAdmin'
+import { checkIsAdmin } from '../../utils/checkIsAdmin'
 import { Form, Input, Button, Alert, Space } from 'antd'
-import { LoginCheck } from 'src/interfaces'
+import { LoginCheck } from '../../interfaces'
 import {
   CurrentRoleTypesEnum,
   setCurrentRoleEvent,
   $displayErrorWarning,
   setErrorWarningEvent,
-} from 'src/store'
+} from '../../store'
 import { adminLoginMessageTypesEnum } from './constants'
 import { NavigationPageTypesEnum } from '../../constants'
 

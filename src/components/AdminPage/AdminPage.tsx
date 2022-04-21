@@ -8,7 +8,7 @@ import {
   $currentUser,
   $currentUserIsLoading,
   setUserNameEvent,
-} from 'src/store'
+} from '../../store'
 import { adminFormTypesEnum } from './constants'
 
 export const AdminPage: FC = () => {

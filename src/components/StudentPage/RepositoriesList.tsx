@@ -3,7 +3,7 @@ import { Collapse, Button, Space } from 'antd'
 import { Urls } from './constants'
 import { PanelList } from './PanelList'
 import { useStore } from 'effector-react'
-import { get } from 'src/api/'
+import { get } from '../../api/'
 import {
   $allRepo,
   $repoCount,
@@ -12,7 +12,7 @@ import {
   setAllRepoVisibleEvent,
   setRepoCountEvent,
   setRepoListEvent,
-} from 'src/store/repositoriesList'
+} from '../../store/repositoriesList'
 
 export const RepositoriesList = (prop: { user: string }) => {
   const isAllShown = useStore($allRepo)

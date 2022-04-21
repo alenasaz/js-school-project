@@ -1,4 +1,4 @@
-import { LoginCheck } from 'src/interfaces'
+import { LoginCheck } from '../interfaces'
 
 //TODO: изменить на проверку по признаку isAdmin, присвоенному юзеру из БД
 export const checkIsAdmin = ({ username, password }: LoginCheck) => {

@@ -1,5 +1,5 @@
 import { domain } from '../domain'
-import { GET_CURRENT_USER_BY_NICKNAME } from 'src/gql/queries'
+import { GET_CURRENT_USER_BY_NICKNAME } from '../../gql/queries'
 import { useQuery } from '@apollo/client'
 import { currentUser } from './interfaces'
 import { setUserIsLoadingEvent } from './events'
